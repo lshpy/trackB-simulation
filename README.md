@@ -1,34 +1,42 @@
-# Track B 학기 시뮬레이션
+# Track B Semester Simulation
 
-IMEN315 인간공학 팀프로젝트(7조) — 강의계획서의 평가 체계 검증.
+> ACT-R simulation comparing a single final exam with biweekly quizzes, for the IMEN315 Human Factors (Ergonomics) team project (Team 7).
 
-ACT-R Base-Level Activation 공식으로 **단일 기말고사(S1)** vs
-**격주 퀴즈(S2)** 의 학기말 기억 활성화를 비교한다.
+Validates the assessment scheme proposed in the team's course syllabus. Using the ACT-R base-level activation
+equation, it compares end-of-semester memory activation under a **single final exam (S1)** and
+**biweekly quizzes (S2)**.
 
-## 강의 공식 (cognition3)
+## Lecture equation (cognition3)
 
 ```
 B = ln( Σ_j  t_j^(-d) )
 ```
 
-- `B`   : 기억 활성화 (클수록 잘 인출됨)
-- `t_j` : j번째 학습/퀴즈로부터 기말까지 경과 시간
-- `d`   : 개인 망각률
+- `B`   : memory activation (higher = easier retrieval)
+- `t_j` : time elapsed from the j-th study/quiz event to the final exam
+- `d`   : individual decay (forgetting) rate
 
-## 파라미터
+## Parameters
 
-| 파라미터 | 의미 | 추정 방식 |
+| Parameter | Meaning | Estimation |
 |---|---|---|
-| `d` | 개인 망각률 | single 정답률에서 개인별 역산 — **변동** |
-| `theta` | 퀴즈 부스트 | (repeated − single) 정답률 차이에서 개인별 추정 — **변동** |
+| `d` | individual decay rate | back-calculated per person from single-condition accuracy — **varies** |
+| `theta` | quiz boost | estimated per person from the (repeated − single) accuracy gap — **varies** |
 
-## 실행
+## Run
 
 ```bash
 python3 simulation.py
 ```
 
-- 입력: `trackB_data.csv` (자리 외우기 게임 응답, n=69)
-- 출력: STEP 1~3 + 민감도 분석(θ=1 / 기억력 약자 추적)
+- Input: `trackB_data.csv` (responses from the seat-position memory game, n=69)
+- Output: STEP 1-3 plus sensitivity analyses (θ=1, and tracking of weak-memory students)
 
-표준 라이브러리만 사용 — 별도 설치 불필요.
+Standard library only; nothing to install.
+
+## Status
+
+Coursework (IMEN315 team project).
+
+---
+https://github.com/lshpy
